@@ -112,9 +112,7 @@ def pregunta_03():
     Especificación y entrenamiento del modelo. En sklearn, el modelo de regresión
     logística (a diferencia del modelo implementado normalmente en estadística) tiene
     un hiperparámetro de regularición llamado `Cs`. Consulte la documentación.
-
     Para encontrar el valor óptimo de Cs se puede usar LogisticRegressionCV.
-
     Ya que las variables explicativas son literales, resulta más conveniente usar un
     pipeline.
     """
@@ -122,7 +120,9 @@ def pregunta_03():
     # Importe LogisticRegressionCV
     # Importe OneHotEncoder
     # Importe Pipeline
-    from ____ import ____
+    from sklearn.linear_model import LogisticRegressionCV
+    from sklearn.preprocessing import OneHotEncoder
+    from sklearn.pipeline import Pipeline
 
     # Cargue las variables.
     X_train, _, y_train, _ = pregunta_02()
@@ -131,16 +131,16 @@ def pregunta_03():
     # LogisticRegression con una regularización Cs=10
     pipeline = Pipeline(
         steps=[
-            ("____", ____()),
-            ("____", ____(____)),
+            ("OneHotEncoder", OneHotEncoder()),
+            ("LogisticRegression", LogisticRegressionCV(Cs = 10)),
         ],
     )
 
     # Entrene el pipeline con los datos de entrenamiento.
-    ____.____(____, ____)
+    pipeline.fit(X_train, y_train)
 
     # Retorne el pipeline entrenado
-    return pipeline
+    return 
 
 
 def pregunta_04():
@@ -149,7 +149,7 @@ def pregunta_04():
     """
 
     # Importe confusion_matrix
-    from ____ import ____
+    from sklearn.metrics import confusion_matrix
 
     # Obtenga el pipeline de la pregunta 3.
     pipeline = pregunta_03()
@@ -158,15 +158,15 @@ def pregunta_04():
     X_train, X_test, y_train, y_test = pregunta_02()
 
     # Evalúe el pipeline con los datos de entrenamiento usando la matriz de confusion.
-    cfm_train = ____(
-        y_true=____,
-        y_pred=____.____(____),
+    cfm_train = confusion_matrix(
+        y_true=y_train,
+        y_pred=pipeline.predict(X_train),
     )
 
-    cfm_test = ____(
-        y_true=____,
-        y_pred=____.____(____),
+    cfm_test = confusion_matrix(
+        y_true=y_test,
+        y_pred=pipeline.predict(X_test),
     )
 
     # Retorne la matriz de confusion de entrenamiento y prueba
-    return cfm_train, cfm_test
+    return cfm_train, 
