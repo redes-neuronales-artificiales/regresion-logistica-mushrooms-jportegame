@@ -140,7 +140,7 @@ def pregunta_03():
     pipeline.fit(X_train, y_train)
 
     # Retorne el pipeline entrenado
-    return 
+    return pipeline
 
 
 def pregunta_04():
@@ -169,4 +169,5 @@ def pregunta_04():
     )
 
     # Retorne la matriz de confusion de entrenamiento y prueba
-    return cfm_train, 
+    return cfm_train, cfm_test
+    
